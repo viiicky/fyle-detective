@@ -54,7 +54,7 @@ def read_file(file_name, bucket):
 # print(upload_file('bp_vikas2.json', 'fyle-hackathon'))
 print(read_file('bp_vikas2.json', 'fyle-hackathon'))
 
-# helpful links:
+# Credits:
 # https://boto3.amazonaws.com/v1/documentation/api/latest/guide/quickstart.html
 # https://boto3.amazonaws.com/v1/documentation/api/latest/guide/s3-uploading-files.html
 # https://boto3.amazonaws.com/v1/documentation/api/latest/guide/s3-example-download-file.html
