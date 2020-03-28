@@ -20,4 +20,4 @@ Quick utility to help you debug your bugs like never before. This utility is the
 ### Preview
 ![Freshdesk Screenshot](/fd.png)
 
-Note: Make sure you install the relevant dependencies and have the relevant environment variable set in your system for this script to function.
+Note: Make sure you install the relevant dependencies and have the relevant environment variables set in your system for this script to function.
