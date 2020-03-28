@@ -3,7 +3,7 @@
 Quick utility to help you debug your bugs like never before. This utility is the sister-utility of the chrome extension [fyle-inspector](https://github.com/viiicky/fyle-inspector)
 
 ## Usage:
-`python fyle_detective.py <evidence_url>`
+`fyle_detective.py [-h] [-ct] evidence_url`
 
 
 ## Description
@@ -15,7 +15,7 @@ Quick utility to help you debug your bugs like never before. This utility is the
 	- local_storage: the complete local storage from the client during the time of crime
 	- system_info: browser details, machine details etc.
 	- log_data: all the messages that were logged on console
-3. It creates a Freshdesk ticket attaching the above screenshot and evidence and putting out highlights of the report as description of the ticket.
+3. [OPTIONAL] It creates a Freshdesk ticket attaching the above screenshot and evidence and putting out highlights of the report as description of the ticket.
 
 ### Preview
 ![Freshdesk Screenshot](/fd.png)
