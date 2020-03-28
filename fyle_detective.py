@@ -84,10 +84,10 @@ def create_fd_ticket(evidence):
 
     fyle_user = json.loads(evidence['local_storage']['fyle.user'])
     description = {
-    "url": evidence['url'],
-    "email": fyle_user['us']['email'],
+    'url': evidence['url'],
+    'email': fyle_user['us']['email'],
     'org_name': fyle_user['ou']['org_name'],
-    "org_id": fyle_user['ou']['org_id'],
+    'org_id': fyle_user['ou']['org_id'],
     'org_user_id': fyle_user['ou']['id']
     }
 
@@ -104,15 +104,15 @@ def create_fd_ticket(evidence):
     r = requests.post('https://'+ FD_DOMAIN +'.freshdesk.com/api/v2/tickets', auth = (FD_API_KEY, FD_PASSWORD), files = multipart_data)
 
     if r.status_code == 201:
-        print("Ticket created successfully, the response is given below" + r.text)
-        print("Location Header : " + r.headers['Location'])
+        print('Ticket created successfully, the response is given below' + r.text)
+        print('Location Header : ' + r.headers['Location'])
     else:
-        print("Failed to create ticket, errors are displayed below,")
+        print('Failed to create ticket, errors are displayed below,')
         response = json.loads(r.content)
-        print(response["errors"])
+        print(response['errors'])
 
-        print("x-request-id : " + r.headers['x-request-id'])
-        print("Status Code : " + str(r.status_code))
+        print('x-request-id : ' + r.headers['x-request-id'])
+        print('Status Code : ' + str(r.status_code))
 
 
 # print(upload_file_to_s3('sample.png', 'fyle-hackathon'))
