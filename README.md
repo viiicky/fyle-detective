@@ -1,6 +1,6 @@
 # fyle-detective
 
-Quick utility to help you debug your bugs like never before. This utility is the sister-utility of the chrome extension [fyle-inspector][https://github.com/viiicky/fyle-inspector]
+Quick utility to help you debug your bugs like never before. This utility is the sister-utility of the chrome extension [fyle-inspector](https://github.com/viiicky/fyle-inspector)
 
 ## Usage:
 `python fyle_detective.py <evidence_url>`
