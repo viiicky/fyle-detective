@@ -74,6 +74,24 @@ def save_evidence(evidence, path):
         json.dump(evidence, write_file, indent=2)
 
 
+def create_description(description_input):
+    NA = 'NA'
+
+    description = '''
+    url -> {}
+    email -> {}
+    org_name -> {}
+    org_id -> {}
+    org_user_id -> {}
+    '''.format(
+        description_input.get('url', NA),
+        description_input.get('email', NA),
+        description_input.get('org_name', NA),
+        description_input.get('org_id', NA),
+        description_input.get('org_user_id', NA))
+
+    return description
+
 def create_fd_ticket(evidence, screenshot_file_name, evidence_file_name):
     description = {'url': evidence['url']}
 
@@ -92,7 +110,7 @@ def create_fd_ticket(evidence, screenshot_file_name, evidence_file_name):
         ('priority', (None, '2')),
         ('attachments[]', (screenshot_file_name, open(screenshot_file_name, 'rb'), 'image/png')),
         ('attachments[]', (evidence_file_name, open(evidence_file_name, 'rb'), 'application/json')),
-        ('description', (None, '<pre>'+json.dumps(description, indent=2)+'</pre>'))
+        ('description', (None, '<pre>'+create_description(description)+'</pre>'))
     ]
 
     r = requests.post('https://'+ FD_DOMAIN +'.freshdesk.com/api/v2/tickets', auth = (FD_API_KEY, FD_PASSWORD), files = multipart_data)
