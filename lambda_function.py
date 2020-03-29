@@ -126,7 +126,7 @@ def create_fd_ticket(evidence, screenshot_file_name, evidence_file_name):
                       files=multipart_data)
 
     if r.status_code == 201:
-        id = r.json().get('id')
+        id = str(r.json().get('id'))
         print('Ticket created successfully, the response is given below' + id)
         print('Location Header : ' + r.headers['Location'])
         return 'https://' + FD_DOMAIN + '.freshdesk.com/a/tickets/' + id
@@ -148,6 +148,7 @@ def study_evidence(evidence, create_ticket=False):
 
     if create_ticket:
         fd_url = create_fd_ticket(evidence, '/tmp/' + screenshot_file_name, '/tmp/' + evidence_file_name)
+        print(fd_url)
         create_clickup_task(evidence, fd_url, '/tmp/' + screenshot_file_name,
                             '/tmp/' + evidence_file_name)
 
