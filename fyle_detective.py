@@ -75,14 +75,15 @@ def save_evidence(evidence, path):
 
 
 def create_fd_ticket(evidence, screenshot_file_name, evidence_file_name):
-    fyle_user = json.loads(evidence['local_storage']['fyle.user'])
-    description = {
-    'url': evidence['url'],
-    'email': fyle_user['us']['email'],
-    'org_name': fyle_user['ou']['org_name'],
-    'org_id': fyle_user['ou']['org_id'],
-    'org_user_id': fyle_user['ou']['id']
-    }
+    description = {'url': evidence['url']}
+
+    fyle_user = evidence['local_storage'].get('fyle.user')
+    fyle_user_json = json.loads(fyle_user) if fyle_user else None
+    if fyle_user_json:
+        description['email'] = fyle_user_json['us']['email']
+        description['org_name'] = fyle_user_json['ou']['org_name']
+        description['org_id'] = fyle_user_json['ou']['org_id']
+        description['org_user_id'] = fyle_user_json['ou']['id']
 
     multipart_data = [
         ('email', (None,'bp@fyle.in')),
