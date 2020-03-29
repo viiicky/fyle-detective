@@ -116,8 +116,9 @@ def create_fd_ticket(evidence, screenshot_file_name, evidence_file_name):
     r = requests.post('https://'+ FD_DOMAIN +'.freshdesk.com/api/v2/tickets', auth = (FD_API_KEY, FD_PASSWORD), files = multipart_data)
 
     if r.status_code == 201:
-        print('Ticket created successfully, the response is given below' + r.text)
-        print('Location Header : ' + r.headers['Location'])
+        return r.json(), r.headers['Location']
+        # print('Ticket created successfully, the response is given below' + r.text)
+        # print('Location Header : ' + r.headers['Location'])
     else:
         print('Failed to create ticket, errors are displayed below,')
         response = json.loads(r.content)
@@ -135,7 +136,7 @@ def study_evidence(evidence, create_ticket=False):
     save_evidence(evidence, evidence_file_name)
 
     if create_ticket:
-        create_fd_ticket(evidence, screenshot_file_name, evidence_file_name)
+        return create_fd_ticket(evidence, screenshot_file_name, evidence_file_name)
 
 
 # print(upload_file_to_s3('sample.png', 'fyle-hackathon'))
@@ -204,7 +205,7 @@ parser.add_argument('-ct', '--create_ticket', action='store_true', help='whether
 args = parser.parse_args()
 
 evidence = requests.get(args.evidence_url).json()
-study_evidence(evidence, args.create_ticket)
+print(study_evidence(evidence, args.create_ticket))
 #
 # Credits:
 # https://boto3.amazonaws.com/v1/documentation/api/latest/guide/quickstart.html
